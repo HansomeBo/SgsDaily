@@ -6,8 +6,9 @@ from config import *
 
 __all__ = ['OpenGame', 'QuitGame']
 
+
 def OpenGame(url, username, password):
-    driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
     driver.get(url)
     title = driver.title
     username_input, password_input = driver.find_elements(By.CLASS_NAME, 'dobest_input')
@@ -22,5 +23,11 @@ def OpenGame(url, username, password):
     time.sleep(page_load_interval)
     return driver, title
 
+
 def QuitGame(driver):
     driver.quit()
+
+
+if __name__ == '__main__':
+    driver, title = OpenGame('http://web.sanguosha.com/login/index.html', 'huanlingshao2', 'xijinping')
+    print(title)

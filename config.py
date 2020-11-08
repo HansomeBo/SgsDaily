@@ -9,6 +9,6 @@ battle_interval = 120.0
 operation_interval = 3.0
 page_load_interval = 20.0
 
-chrome_appendix = ' - Google Chrome'
-chrome_render_hwnd = 'Chrome_RenderWidgetHostHWND'
+chrome_appendix = ' - FireFox'
+chrome_render_hwnd = 'FireFox_RenderWidgetHostHWND'
 game_url = 'http://web.sanguosha.com/login/index.html'
