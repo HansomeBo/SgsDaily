@@ -1,4 +1,7 @@
 import argparse, sys
+import time
+
+import win32api
 
 if sys.platform not in ['win32']:
     raise OSError('Only have Implement on Windows Now')
@@ -22,17 +25,18 @@ from win32 import *
 
 def main(username, password, loop_times):
     driver, title = OpenGame(game_url, username, password)
-
-    sgs_chrome_hwnd = FindWindow(None, title)
+    sgs_chrome_hwnd = FindWindow(None, title + chrome_appendix)
     RestoreWindow(sgs_chrome_hwnd)
     SetWindowPos(sgs_chrome_hwnd, 0, 0, default_width, default_height)
     sgs_chrome_children_hwnds = EnumChildWindows(sgs_chrome_hwnd)
     sgs_host_hwnd = sgs_chrome_children_hwnds[chrome_render_hwnd]
+    while True:
+        time.sleep(2)
+        print(win32api.GetCursorPos(sgs_host_hwnd))
+    # QuitLogoAndActivity(sgs_host_hwnd)
+    # Daily(sgs_host_hwnd, loop_times)
 
-    QuitLogoAndActivity(sgs_host_hwnd)
-    Daily(sgs_host_hwnd, loop_times)
-
-    QuitGame(driver)
+    # QuitGame(driver)
 
 
 if __name__ == '__main__':
